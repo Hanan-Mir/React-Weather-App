@@ -6,11 +6,18 @@ function HourlyForecast({hourlyForecast,getWeatherIcon,units}) {
       const [daySelected,setDaySelected]=useState();
       const [temperatureIndexes,setTemperatureIndexes]=useState([])
        const days= useMemo(()=>['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],[])
-       //useEffect to initaially show the data with current day weather hourly
+       //this effect will run initally and will fetch the hourly weather data
        useEffect(function(){
-          
         const curDay=days[new Date().getDay()];
         setDaySelected(curDay);
+
+       },[days])
+       //useEffect to initaially show the data with current day weather hourly
+       
+       useEffect(function(){
+          
+        // const curDay=days[new Date().getDay()];
+        // setDaySelected(curDay);
         const newTemperatureIndexes=hourlyForecast?.time.reduce((acc,el,index)=>{
     const dayInArray=days[new Date(el).getDay()];
     if(dayInArray===daySelected){
@@ -31,7 +38,9 @@ function HourlyForecast({hourlyForecast,getWeatherIcon,units}) {
     //This is the function to hanldle the week days and also it will give us an array that will contain all the indexes of the temperature with respect to the day selected
   function handleWeekDays(event){
 const itemSelected=event.target.closest('li');
+console.log(itemSelected.textContent)
 if(itemSelected){
+   
     setDaySelected(itemSelected.textContent)
     setWeekDays(false)
 
