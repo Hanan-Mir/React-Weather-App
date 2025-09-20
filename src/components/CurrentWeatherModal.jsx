@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 
-function CurrentWeatherModal({weatherData,geoCodingData,loading,weatherIcon}) {
+function CurrentWeatherModal({weatherData,geoCodingData,weatherIcon}) {
     const [city,setCity]=useState();
     const [country,setCountry]=useState();
     const [temperature,setTemperature]=useState();
@@ -12,6 +12,7 @@ function CurrentWeatherModal({weatherData,geoCodingData,loading,weatherIcon}) {
     const [wind,setWind]=useState();
     const [precipitation,setPrecipitation]=useState();
     const [weatherCode,setWeatherCode]=useState();
+   
 
 
     const currentDate=new Date();
@@ -26,7 +27,7 @@ function CurrentWeatherModal({weatherData,geoCodingData,loading,weatherIcon}) {
 const {city:curCity,country:curCountry}=geoCodingData;
 const {temperature_2m:curTemperature,apparent_temperature:curFeelLike,relative_humidity_2m:curRelativeHumidity,wind_speed_10m:curWindSpeed,precipitation:curPrecipitation,weather_code:code}=weatherData.current;
 const {current_units:curUnit}=weatherData;
-console.log(code)
+console.log(curCity,curCountry);
 setCity(curCity);
 setCountry(curCountry)
 setTemperature(curTemperature)
@@ -41,7 +42,7 @@ setWeatherCode(code)
     return (
         <div className="mt-6 px-1 relative z-[-1]">
             <div>
-          <img src="./assets/images/bg-today-small.svg" /> 
+          <img src="./assets/images/bg-today-small.svg" className="w-[100%]" /> 
             <div className="absolute top-[7%] flex flex-col items-center justify-start gap-y-2">
                 <h1 className="font-bold text-white text-4xl">{city}, {country}</h1>
                 <h2 className="text-white">{currentDate.toLocaleString('en-Us',formatDateObject)}</h2>

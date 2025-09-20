@@ -6,7 +6,7 @@ function HourlyForecast({hourlyForecast,getWeatherIcon,units}) {
       const [daySelected,setDaySelected]=useState();
       const [temperatureIndexes,setTemperatureIndexes]=useState([])
        const days= useMemo(()=>['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],[])
-       
+       //useEffect to initaially show the data with current day weather hourly
        useEffect(function(){
           
         const curDay=days[new Date().getDay()];
@@ -26,7 +26,7 @@ function HourlyForecast({hourlyForecast,getWeatherIcon,units}) {
         const curDay=new Date();
         return days[curDay.getDay()];
     }
-    //function to initially show the weather data with the current day
+    
 
     //This is the function to hanldle the week days and also it will give us an array that will contain all the indexes of the temperature with respect to the day selected
   function handleWeekDays(event){
@@ -49,7 +49,7 @@ if(itemSelected){
   }
    
     return (
-        <div className="bg-neutral-800 mt-3 rounded-md h-[80vh] overflow-auto relative">
+        <div className="bg-neutral-800 mt-2 rounded-md h-[80vh] overflow-auto relative">
     
                 <div className="flex justify-between items-start py-4 px-2 ">
                     <h2 className="text-white font-bold mt-2">Hourly forecast</h2>
@@ -72,7 +72,7 @@ if(itemSelected){
                     </div>
                     
                 </div>
-            <ul className=" mt-2 px-4 absolute top-[12%]">
+            <ul className="px-4 absolute top-[12%]">
                 {temperatureIndexes?.map(el=>{
 return <li className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md">
     <div className="flex items-center">

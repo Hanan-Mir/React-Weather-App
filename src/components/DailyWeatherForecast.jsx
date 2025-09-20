@@ -18,7 +18,7 @@ if(dailyForecast){
     return (
         <div className="mt-4">
             <h2 className="text-white">Daily forecast</h2>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 mt-2">
                 {time?.map((el,index)=>{
                     return (
                         <div className="bg-neutral-800 py-4 px-3 rounded-lg">

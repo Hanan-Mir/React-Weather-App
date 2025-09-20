@@ -26,7 +26,8 @@ setViewDropDown(curState=>!curState)
           <h2 className="text-neutral-500 mt-3">Temperature</h2>
           <h2 className="text-white mt-3 font-medium flex justify-between items-center" onClick={()=>
             {setSelectedTemperature((curStatus)=>!curStatus)
-              setTemperatureUnit('celsius')
+              setTemperatureUnit('celsius');
+              handleDropDown();
             }
             
             }>
@@ -35,7 +36,8 @@ setViewDropDown(curState=>!curState)
             </h2>
           <span className="font-medium text-white mt-3 pb-2 border-b-1 border-b-neutral-500 flex justify-between items-center" onClick={()=>{
             setSelectedTemperature((curStatus)=>!curStatus)
-             setTemperatureUnit('fahrenheit')
+             setTemperatureUnit('fahrenheit');
+             handleDropDown();
             }}>
             <h2>Fahrenheit(&#8457;)</h2>
             {!selectedTemperature &&<img src='./assets/images/icon-checkmark.svg' />}
@@ -45,14 +47,16 @@ setViewDropDown(curState=>!curState)
           <h2 className="text-neutral-500">Wind Speed</h2>
           <span className="text-white mt-3 font-medium flex justify-between items-center" onClick={()=>{
             setSelectedWindSpeed((curStatus)=>!curStatus)
-            setWindSpeedUnit('km/h')
+            setWindSpeedUnit('km/h');
+            handleDropDown();
             }}>
            <h2>Km/h</h2>
            { selectedWindSpeed &&  <img src='./assets/images/icon-checkmark.svg' /> }
             </span>
           <span className="text-white mt-3 pb-2 border-b-1 font-medium border-b-neutral-500 flex justify-between items-center" onClick={()=>
             {setSelectedWindSpeed((curStatus)=>!curStatus)
-              setWindSpeedUnit('mph')
+              setWindSpeedUnit('mph');
+              handleDropDown();
             }}>
         <h2>mph</h2>
           {!selectedWindSpeed &&  <img src='./assets/images/icon-checkmark.svg' /> }
@@ -62,7 +66,8 @@ setViewDropDown(curState=>!curState)
           <h2 className="text-neutral-500">precipitation</h2>
           <span className="text-white mt-3 font-medium flex items-center justify-between" onClick={()=>{
             setSelectedPrecipitation((curStatus)=>!curStatus)
-            setPrecipitationUnit('mm')
+            setPrecipitationUnit('mm');
+            handleDropDown()
             }}>
             <h2>Millimeter(mm)</h2>
           {selectedPrecipitation &&   <img src='./assets/images/icon-checkmark.svg' />}
@@ -70,7 +75,8 @@ setViewDropDown(curState=>!curState)
             </span>
           <span className="text-white mt-3 pb-2 font-medium flex items-center justify-between" onClick={()=>{
             setSelectedPrecipitation((curStatus)=>!curStatus)
-            setPrecipitationUnit('inch')
+            setPrecipitationUnit('inch');
+            handleDropDown();
             }}>
             <h2>Inches(in)</h2>
             {!selectedPrecipitation && <img src='./assets/images/icon-checkmark.svg' />}
