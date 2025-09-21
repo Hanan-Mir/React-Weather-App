@@ -82,8 +82,8 @@ if(itemSelected){
                     
                 </div>
             <ul className="px-4 absolute top-[12%]">
-                {temperatureIndexes?.map(el=>{
-return <li className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md">
+                {temperatureIndexes?.map((el,index)=>{
+return <li key={index} className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md">
     <div className="flex items-center">
     <img src={getWeatherIcon(hourlyForecast.weather_code[el])} className="w-[18%]" />
     <span className="text-white">{formatTime(hourlyForecast.time[el])}</span>

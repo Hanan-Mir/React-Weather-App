@@ -68,9 +68,22 @@ function App() {
         const weekDayNumber=curDate.getDay();
         return days[weekDayNumber].slice(0,3)
     }
+    //Optimization function for getting the location and the weather data
+async function getWeatherAndLocation(lat,lng){
+  const locationPromise=await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=96ffd920db094716b8d6c6335a2a863c`)
+const weatherPromise=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code,apparent_temperature&current=temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,weather_code,apparent_temperature&timezone=auto${temperatureUnit==='celsius'?'':'&temperature_unit=fahrenheit'}${windSpeedUnit==='km/h'?'':'&wind_speed_unit=mph'}${precipitationUnit==='mm'?'':'&precipitation_unit=inch'}`)
+const [locationResponse,weatherResponse]=await Promise.all([locationPromise,weatherPromise])
+if(!weatherResponse.ok |!locationResponse.ok){
+      throw new Error('Error while finding the weather data')
+    }
+    const [locationData,weatherData]=await Promise.all([locationResponse.json(),weatherResponse.json()])
+    return {locationData,weatherData}
+  
+}
   //This Effect runs on the inital render to get the current location and the current weather of the place
   useEffect(function(){
     let isCancelled=false;
+    if(location) return
     const getCurrentLocation=()=>{
       return new Promise((resolve,reject)=>{
         if(!navigator.geolocation){
@@ -80,18 +93,12 @@ function App() {
       })
     }
    async function getInitialWeather(){
+  
     setLoading(true)
     try{
 const position=await getCurrentLocation();
 if(isCancelled) return
-const locationPromise=await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&apiKey=96ffd920db094716b8d6c6335a2a863c`)
-const weatherPromise=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code,apparent_temperature&current=temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,weather_code,apparent_temperature&timezone=auto${temperatureUnit==='celsius'?'':'&temperature_unit=fahrenheit'}${windSpeedUnit==='km/h'?'':'&wind_speed_unit=mph'}${precipitationUnit==='mm'?'':'&precipitation_unit=inch'}`)
-const [locationResponse,weatherResponse]=await Promise.all([locationPromise,weatherPromise])
-
-if(!weatherResponse.ok |!locationResponse.ok){
-      throw new Error('Error while finding the weather data')
-    }
-    const [locationData,weatherData]=await Promise.all([locationResponse.json(),weatherResponse.json()])
+const {locationData,weatherData}=await getWeatherAndLocation(position.coords.latitude,position.coords.longitude)
   
     console.log(locationData)
 console.log(weatherData)
@@ -112,14 +119,16 @@ if(!isCancelled){
   }
 }
 
-    ,[precipitationUnit,temperatureUnit,windSpeedUnit])
+    ,[location,precipitationUnit,windSpeedUnit,temperatureUnit])
+
   //This effect is to fetch the coordinates and to get the current weather according to the location
   useEffect(function(){
-    if(!location ) return
+    // if(!location ) return
+    
 async function getLocationCordinates(){
   try{
      setLoading(true);
-     console.log(location)
+     console.log('hello')
    const locationResponse=await fetch(`https://api.geoapify.com/v1/geocode/search?text=${location}&lang=en&limit=10&type=city&format=json&apiKey=96ffd920db094716b8d6c6335a2a863c`)
   const locationData=await locationResponse.json();
   console.log(locationData);
@@ -156,6 +165,7 @@ useEffect(function(){
   async function getWeatherForCity(){
     try{
       setLoading(true);
+      console.log('hello2')
        const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${geoCodingData.lat}&longitude=${geoCodingData.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code,apparent_temperature&current=temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,weather_code,apparent_temperature&timezone=auto${temperatureUnit==='celsius'?'':'&temperature_unit=fahrenheit'}${windSpeedUnit==='km/h'?'':'&wind_speed_unit=mph'}${precipitationUnit==='mm'?'':'&precipitation_unit=inch'}`);
        if(!weatherResponse.ok){
         throw new Error('Error while finding the data')

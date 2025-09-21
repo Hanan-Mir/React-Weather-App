@@ -21,7 +21,7 @@ if(dailyForecast){
             <div className="grid grid-cols-3 gap-2 mt-2">
                 {time?.map((el,index)=>{
                     return (
-                        <div className="bg-neutral-800 py-4 px-3 rounded-lg">
+                        <div key={index} className="bg-neutral-800 py-4 px-3 rounded-lg">
                             <div className="flex flex-col items-center">
                             <h2 className="text-white">{dayOfTheWeek(el)}</h2>
                             <img src={weatherIcon(weatherCode[index])} />
