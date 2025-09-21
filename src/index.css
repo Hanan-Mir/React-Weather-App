@@ -5,3 +5,18 @@
     --font-bricolage:"Bricolage Grotesque",sans-serif;
     --font-dmSans:'DM Sans', sans-serif
 }
+::-webkit-scrollbar{
+    background-color: #262626;
+    width: 7px;
+    height: 2px;
+
+}
+::-webkit-scrollbar-track{
+    border-radius: 90px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #404040;
+    min-width: 100px;
+    border-radius: 80px;
+
+}

@@ -186,12 +186,18 @@ useEffect(function(){
   
 
  return (
-  <div className="w-full max-w-md px-5 py-4 h-[100vh]">
+  <div className="w-full max-w-md px-5 py-4 h-[100vh] md:max-w-full md:w-full md:flex md:flex-col md:items-center md:pb-19">
   <Header selectedTemperature={selectedTemperature} setSelectedTemperature={setSelectedTemperature} selectedWindSpeed={selectedWindSpeed} setSelectedWindSpeed={setSelectedWindSpeed} selectedPrecipitation={selectedPrecipitation} setSelectedPrecipitation={setSelectedPrecipitation} setTemperatureUnit={setTemperatureUnit} setWindSpeedUnit={setWindSpeedUnit} setPrecipitationUnit={setPrecipitationUnit} />
   <InputBar userInput={userInput} setUserInput={setUserInput} setLocation={setLocation} cityResults={cityResults} setGeoCodingData={setGeoCodingData} setCityResults={setCityResults} />
+  <div className="md:flex md:flex-row md:justify-start md:gap-3 md:w-[80%]">
+    <div className="md:w-[70%]">
 {loading || !weatherData || !geoCodingData ?<CurrentWeatherForeCastSkeleton />:<CurrentWeatherModal weatherData={weatherData} geoCodingData={geoCodingData} loading={loading} weatherIcon={getWeatherIcon} />}
 {loading || !weatherData || !geoCodingData?<DailyWeatherSkeleton />:<DailyWeatherForecast dailyForecast={weatherData?.daily} weatherIcon={getWeatherIcon} units={weatherData?.daily_units} dayOfTheWeek={dayOfTheWeek} />}
+</div>
+<div className="md:w-[30%]">
 {loading || !weatherData || !geoCodingData?<HourlyForecastSkeleton /> :<HourlyForecast hourlyForecast={weatherData?.hourly} getWeatherIcon={getWeatherIcon} units={weatherData?.hourly_units} /> }
+  </div>
+  </div>
   </div>
   
  )

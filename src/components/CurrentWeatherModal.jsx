@@ -40,19 +40,22 @@ setWeatherCode(code)
     }
     },[geoCodingData,weatherData])
     return (
-        <div className="mt-6 px-1 relative z-[-1]">
-            <div>
-          <img src="./assets/images/bg-today-small.svg" className="w-[100%]" /> 
-            <div className="absolute top-[7%] flex flex-col items-center justify-start gap-y-2">
-                <h1 className="font-bold text-white text-4xl">{city}, {country}</h1>
+        <div className="mt-6 px-1 relative z-[-1] md:w-[100%] md:relative">
+            <div className="relative">
+          <img src="./assets/images/bg-today-small.svg" className="w-[100%] block md:hidden " />
+          <img src="./assets/images/bg-today-large.svg" className="hidden md:block md:w-[100%]" /> 
+            <div className="absolute top-[7%] flex flex-col items-center justify-start gap-y-2 md:flex md:flex-row md:justify-between md:min-w-[10%] md:w-[80%] md:items-center md:absolute md:top-[24%]">
+                <div className="md:px-4 md:min-w-[10%] md:w-[60%]">
+                <h1 className="font-bold text-white text-4xl md:text-2xl">{city}, {country}</h1>
                 <h2 className="text-white">{currentDate.toLocaleString('en-Us',formatDateObject)}</h2>
-            <div className="flex items-center justify-between w-[70%]">
-                <img src={weatherIcon(weatherCode)} className="w-[40%]" />
+                </div>
+            <div className="flex items-center justify-between w-[70%] md:flex md:justify-start md:w-[20%]">
+                <img src={weatherIcon(weatherCode)} className="w-[40%] md:w-[90%]" />
                 <h1 className="text-white font-extrabold text-7xl font-dmSans italic">{Math.round(temperature)}{unit?.temperature_2m.slice(0,1)}</h1>
             </div> 
             
             </div>
-            <div className="grid grid-cols-2 gap-3 mt-4">
+            <div className="grid grid-cols-2 gap-3 mt-4 md:w-[100%] md:grid md:grid-cols-4">
                 <div className="bg-neutral-800 px-4 py-4 h-[15vh] rounded-xl flex justify-start flex-col ">
                     <h2 className="text-neutral-400">Feels Like</h2>
                     <h2 className="text-white text-[1.6rem] mt-4">

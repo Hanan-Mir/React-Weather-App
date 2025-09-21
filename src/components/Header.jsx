@@ -9,10 +9,10 @@ function Header({selectedTemperature,setSelectedTemperature,selectedWindSpeed,se
 setViewDropDown(curState=>!curState)
     }
   return (
-    <div className="relative">
-      <div className="flex justify-between" onClick={()=>handleDropDown()}>
-        <img src="./assets/images/logo.svg" className="w-[50%]" />
-        <div className="flex items-center bg-[hsl(243,23%,30%)] px-2 py-1 rounded-lg ">
+    <div className="relative md:w-[80%] md:relative">
+      <div className="flex justify-between">
+        <img src="./assets/images/logo.svg" className="w-[50%] md:w-[20%]" />
+        <div className="flex items-center bg-[hsl(243,23%,30%)] px-2 py-1 rounded-lg " onClick={()=>handleDropDown()}>
           <img src="./assets/images/icon-units.svg" className="w-[30%]" />
           <span className="text-white font-dmSans ml-1 mr-1 font-semibold">
             Units
@@ -20,7 +20,7 @@ setViewDropDown(curState=>!curState)
           <img src="./assets/images/icon-dropdown.svg" className="w-[30%]" />
         </div>
       </div>
-      <div className={`bg-[hsl(243,23%,30%)] w-[54%] rounded-lg px-4 py-4 font-dmSans absolute left-[46%] top-[110%] ${viewDropDown?'block':'hidden'}`}>
+      <div  className={`bg-[hsl(243,23%,30%)] w-[54%] md:w-[30%] md:absolute md:left-[65%]  rounded-lg px-4 py-4 font-dmSans absolute left-[46%] top-[110%] ${viewDropDown?'block':'hidden'}`}>
         <h2 className="text-white font-medium">Switch to Imperial</h2>
         <div className="flex flex-col">
           <h2 className="text-neutral-500 mt-3">Temperature</h2>
