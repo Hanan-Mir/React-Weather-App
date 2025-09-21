@@ -10,6 +10,7 @@ function HourlyForecast({hourlyForecast,getWeatherIcon,units}) {
        useEffect(function(){
         const curDay=days[new Date().getDay()];
         setDaySelected(curDay);
+        console.log('Helo')
 
        },[days])
        //useEffect to initaially show the data with current day weather hourly
@@ -58,11 +59,11 @@ if(itemSelected){
   }
    
     return (
-        <div className="bg-neutral-800 mt-2 rounded-md h-[80vh] overflow-auto relative">
+        <div className="bg-neutral-800 mt-2 rounded-md h-[80vh] overflow-y-scroll scroll-smooth relative md:w-[100%] md:h-[98%]  md:rounded-[10px] md:mt-4 md:relative">
     
                 <div className="flex justify-between items-start py-4 px-2 ">
-                    <h2 className="text-white font-bold mt-2">Hourly forecast</h2>
-                    <div className="flex gap-1 px-2 py-2 items-center bg-neutral-600 rounded-md z-[5]">
+                    <h2 className="text-white font-bold mt-2 md:text-sm">Hourly forecast</h2>
+                    <div className=" md:px-1 md:py-1 flex gap-1 px-2 py-2 items-center bg-neutral-600 rounded-md z-[5]">
                         {!weekDays ? <>
                         <h2 className="text-white" onClick={()=>setWeekDays(true)}>{daySelected?daySelected:dayOfTheWeek()}</h2>
                         <img src="./assets/images/icon-dropdown.svg" className="w-[10px]" />
@@ -83,7 +84,7 @@ if(itemSelected){
                 </div>
             <ul className="px-4 absolute top-[12%]">
                 {temperatureIndexes?.map((el,index)=>{
-return <li key={index} className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md">
+return <li key={index} className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md md:py-1">
     <div className="flex items-center">
     <img src={getWeatherIcon(hourlyForecast.weather_code[el])} className="w-[18%]" />
     <span className="text-white">{formatTime(hourlyForecast.time[el])}</span>
