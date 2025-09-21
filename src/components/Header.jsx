@@ -20,7 +20,7 @@ setViewDropDown(curState=>!curState)
           <img src="./assets/images/icon-dropdown.svg" className="w-[30%]" />
         </div>
       </div>
-      <div  className={`bg-[hsl(243,23%,30%)] w-[54%] md:w-[30%] md:absolute md:left-[65%]  rounded-lg px-4 py-4 font-dmSans absolute left-[46%] top-[110%] ${viewDropDown?'block':'hidden'}`}>
+      <div  className={`bg-[hsl(243,23%,30%)] w-[54%] md:w-[20%] md:absolute md:left-[77%]  rounded-lg px-4 py-4 font-dmSans absolute left-[46%] top-[110%] md:z-10 ${viewDropDown?'block':'hidden'}`}>
         <h2 className="text-white font-medium">Switch to Imperial</h2>
         <div className="flex flex-col">
           <h2 className="text-neutral-500 mt-3">Temperature</h2>
