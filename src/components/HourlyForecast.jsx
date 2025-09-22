@@ -84,7 +84,7 @@ if(itemSelected){
                     
                 </div>
                 
-            <ul className="px-4 z-[1]  absolute top-[12%] h-[88%]  md:h-[88%] overflow-y-scroll box-border md:box-border scroll-smooth scrollbar-thumb-gray-950 scrollbar-thumb-rounded-lg custom-thumb-size scrollbar-w-1 scrollbar">
+            <ul className="px-4 z-[1] md:mb-50  absolute top-[12%] h-[85%]  md:h-[85%] overflow-y-scroll box-border md:box-border scroll-smooth scrollbar-thumb-gray-950 scrollbar-thumb-rounded-lg custom-thumb-size scrollbar-w-1 scrollbar">
                 {temperatureIndexes?.map((el,index)=>{
 return <li key={index} className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md md:py-1">
     <div className="flex items-center">
