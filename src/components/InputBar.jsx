@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ToastContainer,toast } from "react-toastify"
 function InputBar({userInput,setUserInput,setLocation,cityResults,setGeoCodingData,setCityResults,loading}) {
     const [viewResults,setViewResults]=useState(true);
+    const inputRef=useRef(null)
+    //This effect will focus on the input as soon as the app loads
+    useEffect(function(){
+        if(inputRef.current){
+            inputRef.current.focus();
+        }
+    },[])
     function handleButtonSearch(input){
 
         console.log(cityResults)
@@ -18,7 +25,7 @@ function InputBar({userInput,setUserInput,setLocation,cityResults,setGeoCodingDa
             <div className="md:flex md:gap-2 md:w-[70%] md:mt-[5%]">
             <div className="flex bg-gray-800 px-3 py-3 rounded-md mt-4 w-[100%] md:w-[90%]">
                 <img src="./assets/images/icon-search.svg" className="ml-2 mr-2"  />
-                <input value={userInput ||''} onChange={(e)=>setUserInput(e.target.value)} type="text" placeholder="Search for a place" className="text-white focus:outline-none text-[1.2rem]" />
+                <input ref={inputRef} value={userInput ||''} onChange={(e)=>setUserInput(e.target.value)} type="text" placeholder="Search for a place" className="text-white focus:outline-none text-[1.2rem]" />
 
             </div>
             {cityResults?.length>1 &&viewResults && <ul className="bg-neutral-800 w-[100%] mt-1 px-2 py-2 rounded-lg">{cityResults.map((el,index)=>{
