@@ -313,6 +313,7 @@ if(!location){
             cityResults={cityResults}
             setGeoCodingData={setGeoCodingData}
             setCityResults={setCityResults}
+            loading={loading}
           />
         {noResults?<NoResults />  :<div className="md:flex md:flex-row md:justify-start md:gap-3 md:w-[80%]">
             <div className="md:w-[70%]">
