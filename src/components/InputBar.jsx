@@ -20,7 +20,7 @@ function InputBar({userInput,setUserInput,setLocation,cityResults,setGeoCodingDa
     }
     return (
         <div className="w-[100%] flex flex-col items-center mt-8 md:flex md:flex-col md:items-center md:w-[80%]">
-            <ToastContainer/>
+            <ToastContainer role="emptySearchQuery"/>
             <h1 role='appText'  className="text-white font-extrabold  text-5xl w-[90%] mt-3 md:text-center md:w-[90%] md:text-6xl">How's the sky looking today?</h1>
             <div className="md:flex md:gap-2 md:w-[60%] md:mt-[5%] md:items-start">
            <div className="md:flex md:flex-col md:items-center md:justify-between md:w-[100%] ">
