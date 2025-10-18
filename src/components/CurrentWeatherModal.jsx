@@ -27,7 +27,7 @@ function CurrentWeatherModal({weatherData,geoCodingData,weatherIcon}) {
 const {city:curCity,country:curCountry}=geoCodingData;
 const {temperature_2m:curTemperature,apparent_temperature:curFeelLike,relative_humidity_2m:curRelativeHumidity,wind_speed_10m:curWindSpeed,precipitation:curPrecipitation,weather_code:code}=weatherData.current;
 const {current_units:curUnit}=weatherData;
-console.log(curCity,curCountry);
+console.log(weatherData);
 setCity(curCity);
 setCountry(curCountry)
 setTemperature(curTemperature)
@@ -46,34 +46,34 @@ setWeatherCode(code)
           <img src="./assets/images/bg-today-large.svg" className="hidden md:block md:w-[100%]" /> 
             <div className="absolute top-[7%] flex flex-col items-center justify-start gap-y-2 md:flex md:flex-row md:justify-between md:min-w-[10%] md:w-[80%] md:items-center md:absolute md:top-[24%]">
                 <div className="md:px-4 md:min-w-[10%] md:w-[60%]">
-                <h1 className="font-bold text-white text-4xl md:text-2xl">{city}, {country}</h1>
-                <h2 className="text-white">{currentDate.toLocaleString('en-Us',formatDateObject)}</h2>
+                <h1 data-testid='location' className="font-bold text-white text-4xl md:text-2xl">{city}, {country}</h1>
+                <h2 data-testid='date-display' className="text-white">{currentDate.toLocaleString('en-Us',formatDateObject)}</h2>
                 </div>
             <div className="flex items-center justify-between w-[70%] md:flex md:justify-start md:w-[20%]">
-                <img src={weatherIcon(weatherCode)} className="w-[40%] md:w-[90%]" />
-                <h1 className="text-white font-extrabold text-7xl font-dmSans italic">{Math.round(temperature)}{unit?.temperature_2m.slice(0,1)}</h1>
+                <img data-testid='currentWeatherIcon' src={weatherIcon(weatherCode)} className="w-[40%] md:w-[90%]" />
+                <h1 data-testid='currentTemperature' className="text-white font-extrabold text-7xl font-dmSans italic">{Math.round(temperature)}{unit?.temperature_2m.slice(0,1)}</h1>
             </div> 
             
             </div>
             <div className="grid grid-cols-2 gap-3 mt-4 md:w-[100%] md:grid md:grid-cols-4">
                 <div className="bg-neutral-800 px-4 py-4 h-[15vh] rounded-xl flex justify-start flex-col ">
                     <h2 className="text-neutral-400">Feels Like</h2>
-                    <h2 className="text-white text-[1.6rem] mt-4">
+                    <h2 data-testid='feels-like' className="text-white text-[1.6rem] mt-4">
                         {Math.round(feelsLike)} {unit?.apparent_temperature.slice(0,1)}
                         </h2>
                 
                 </div>
                  <div className="bg-neutral-800 px-4 py-4 h-[15vh] rounded-xl flex justify-start flex-col ">
                     <h2 className="text-neutral-400">Humidity</h2>
-                    <h2 className="text-white text-[1.6rem] mt-4">{humidity}{unit?.relative_humidity_2m}</h2>
+                    <h2 data-testid='humidity' className="text-white text-[1.6rem] mt-4">{humidity}{unit?.relative_humidity_2m}</h2>
                 </div>
                  <div className="bg-neutral-800 px-4 py-4 h-[15vh] rounded-xl flex justify-start flex-col ">
                     <h2 className="text-neutral-400">Wind</h2>
-                    <h2 className="text-white text-[1.6rem] mt-4">{Math.round(wind)} {unit?.wind_speed_10m.replace('/','')}</h2>
+                    <h2 data-testid='wind' className="text-white text-[1.6rem] mt-4">{Math.round(wind)} {unit?.wind_speed_10m.replace('/','')}</h2>
                 </div>
                  <div className="bg-neutral-800 px-4 py-4 h-[15vh] rounded-xl flex justify-start flex-col ">
                     <h2 className="text-neutral-400">Precipitation</h2>
-                    <h2 className="text-white text-[1.6rem] mt-4">{precipitation} {unit?.precipitation}</h2>
+                    <h2 data-testid='precipitation' className="text-white text-[1.6rem] mt-4">{precipitation} {unit?.precipitation}</h2>
                 </div>                 
             </div>
             </div>
