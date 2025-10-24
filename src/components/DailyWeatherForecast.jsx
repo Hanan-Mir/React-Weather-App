@@ -1,34 +1,29 @@
 import { useEffect, useState } from "react";
 
 function DailyWeatherForecast({dailyForecast,weatherIcon,units,dayOfTheWeek}) {
-    const [maxTemp,setMaxTemp]=useState();
-    const [minTemp,setMinTemp]=useState();
-    const [time,setTime]=useState();
-    const [weatherCode,setWeatherCode]=useState();
+    
+    
+console.log(dailyForecast);
+
+    if(!dailyForecast){
+        return null;
+    }
     
 
-    useEffect(function(){
-if(dailyForecast){
-    setMaxTemp(dailyForecast.temperature_2m_max)
-    setMinTemp(dailyForecast.temperature_2m_min)
-    setTime(dailyForecast.time)
-    setWeatherCode(dailyForecast.weather_code)
-}
-    },[dailyForecast])
     return (
         <div className="mt-4 md:w-[100%]">
             <h2 className="text-white">Daily forecast</h2>
             <div className="grid grid-cols-3 gap-2 mt-2 md:w-[100%] md:gird md:grid-cols-7">
-                {time?.map((el,index)=>{
+                {dailyForecast.time?.map((el,index)=>{
                     return (
-                        <div key={index} className="bg-neutral-800 py-4 px-3 rounded-lg">
+                        <div role="listItem" key={index} className="bg-neutral-800 py-4 px-3 rounded-lg">
                             <div className="flex flex-col items-center">
-                            <h2 className="text-white">{dayOfTheWeek(el)}</h2>
-                            <img src={weatherIcon(weatherCode[index])} />
+                            <h2 role="dayOfTheWeek" className="text-white">{dayOfTheWeek(el)}</h2>
+                            <img role="weatherIcon" src={weatherIcon(dailyForecast.weather_code[index])} />
                             </div>
                             <div className="flex justify-between">
-                                <h2 className="text-white">{Math.round(maxTemp[index])}{units.temperature_2m_max.slice(0,1)}</h2>
-                                <h2 className="text-white">{Math.round(minTemp[index])}{units.temperature_2m_min.slice(0,1)}</h2>
+                                <h2 data-testid='max-temp' className="text-white">{Math.round(dailyForecast.temperature_2m_max[index])}{units.temperature_2m_max.slice(0,1)}</h2>
+                                <h2 data-testid='min-temp' className="text-white">{Math.round(dailyForecast.temperature_2m_min[index])}{units.temperature_2m_min.slice(0,1)}</h2>
                                 </div>
 
                             </div>

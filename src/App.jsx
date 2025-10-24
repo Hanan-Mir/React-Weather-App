@@ -58,7 +58,9 @@ function App() {
   };
   //function to get the weather code
   function getWeatherIcon(weatherCode) {
+   
     const iconAddress = weatherCodes[String(weatherCode)];
+  
 
     return iconAddress;
   }
