@@ -62,15 +62,15 @@ if(itemSelected){
         <>
         <div className="bg-neutral-800 mt-2 rounded-2xl h-[90vh] mb-[5px]  relative md:w-[100%] md:h-[98%]  md:rounded-2xl md:mt-4 md:relative">
     
-                <div className="flex justify-between items-start py-4 px-2 ">
+                <div  className="flex justify-between items-start py-4 px-2 ">
                     <h2 className="text-white font-bold mt-2 md:text-sm">Hourly forecast</h2>
                     <div className=" md:px-1 md:py-1 flex gap-1 px-2 py-2 items-center bg-neutral-600 rounded-md z-[7]">
                         {!weekDays ? <>
-                        <h2 className="text-white" onClick={()=>setWeekDays(true)}>{daySelected?daySelected:dayOfTheWeek()}</h2>
+                        <h2 data-testid="dropDown" className="text-white" onClick={()=>setWeekDays(true)}>{daySelected?daySelected:dayOfTheWeek()}</h2>
                         <img src="./assets/images/icon-dropdown.svg" className="w-[10px]" />
                         </>
 
-                   : <ul className="text-white px-5 py-2 z-[7]" onClick={(e)=>handleWeekDays(e)}>
+                   : <ul data-testid="weekdays" className="text-white px-5 py-2 z-[7]" onClick={(e)=>handleWeekDays(e)}>
                     <li className="mb-2 hover:bg-neutral-400 border-1 border-transparent px-2 hover:rounded-md transition-all ease-in">Monday</li>
                     <li className="mb-2 hover:bg-neutral-400 border-1 border-transparent px-2 hover:rounded-md transition-all ease-in">Tuesday</li>
                     <li className="mb-2 hover:bg-neutral-400 border-1 border-transparent px-2 hover:rounded-md transition-all ease-in" >Wednesday</li>
@@ -88,11 +88,11 @@ if(itemSelected){
                 {temperatureIndexes?.map((el,index)=>{
 return <li key={index} className="flex items-center justify-between bg-neutral-700 mb-2 px-2 rounded-md md:py-1">
     <div className="flex items-center">
-    <img src={getWeatherIcon(hourlyForecast.weather_code[el])} className="w-[18%]" />
-    <span className="text-white">{formatTime(hourlyForecast.time[el])}</span>
+    <img data-testid='imgEl' src={getWeatherIcon(hourlyForecast.weather_code[el])} className="w-[18%]" />
+    <span data-testid='time' className="text-white">{formatTime(hourlyForecast.time[el])}</span>
     </div>
     <div>
-    <span className="text-white">{hourlyForecast.temperature_2m[el]}{units?.temperature_2m.slice(0,1)}</span>
+    <span data-testid='temperature' className="text-white">{hourlyForecast.temperature_2m[el]}{units?.temperature_2m.slice(0,1)}</span>
     </div>
     
 </li>
