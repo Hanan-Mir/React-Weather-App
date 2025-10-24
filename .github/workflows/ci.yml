@@ -34,7 +34,7 @@ jobs:
 
     # Step 3: Installs your project's dependencies
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     # Step 4: Runs your unit tests
     - name: Run unit tests
